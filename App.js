@@ -173,7 +173,7 @@ const jsPdfGenerator = (orderData, invoiceData) => {
   });
 
   // ---------------------------------------------------------------
-  // create invoice data table
+  // create listData table
 
   doc.setFontSize(10);
 
@@ -292,8 +292,6 @@ const saveInvoiceData = () => {
   invoiceArray[9][1] = document.getElementById('buyerOrderNumber').value;
   invoiceArray[10][1] = document.getElementById('interestOfLatePayment').value;
   invoiceArray[11][1] = document.getElementById('timeOfComplaint').value;
-  console.log(invoiceData);
-  console.log(invoiceArray);
 
   return null;
 }
