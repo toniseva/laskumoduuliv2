@@ -65,18 +65,7 @@ const invoiceData = [
     "buyerName": "",
     "streetAddress": "",
     "zipCodeTown": "",
-    "invoiceNumber": "",
-    "referenceNumber": "",
-    "invoiceDate": "",
-    "dueDate": "",
-    "shippingDate": "",
-    "shippingMethod": "",
-    "paymentCondition": "",
-    "ourReference": "",
-    "yourReference": "",
-    "buyerOrderNumber": "",
-    "interestOfLatePayment": "",
-    "timeOfComplaint": "",
+
   },
 ]
 
