@@ -38,26 +38,8 @@ currentDate = currentDate.toISOString();
 const orderData = [
   {
     id: "Vmw5Rh73q", billName: "lasku 1", billContent: [
-      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "20", Tax: "20" },
-      { id: "W6GNu09W5", itemName: "asia2", Price: "30", Count: "40", Tax: "20" },
-      { id: "Rv__7bzV_", itemName: "asia3", Price: "10", Count: "10", Tax: "10" },
-      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "20", Tax: "20" },
-      { id: "W6GNu09W5", itemName: "asia2", Price: "30", Count: "40", Tax: "20" },
-      { id: "Rv__7bzV_", itemName: "asia3", Price: "10", Count: "10", Tax: "10" },
-      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "20", Tax: "20" },
-      { id: "W6GNu09W5", itemName: "asia2", Price: "30", Count: "40", Tax: "20" },
-      { id: "Rv__7bzV_", itemName: "asia3", Price: "10", Count: "10", Tax: "10" },
-      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "20", Tax: "20" },
-      { id: "W6GNu09W5", itemName: "asia2", Price: "30", Count: "40", Tax: "20" },
-      { id: "Rv__7bzV_", itemName: "asia3", Price: "10", Count: "10", Tax: "10" },
-      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "20", Tax: "20" },
-      { id: "W6GNu09W5", itemName: "asia2", Price: "30", Count: "40", Tax: "20" },
-      { id: "Rv__7bzV_", itemName: "asia3", Price: "10", Count: "10", Tax: "10" },
-      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "20", Tax: "20" },
-      { id: "W6GNu09W5", itemName: "asia2", Price: "30", Count: "40", Tax: "20" },
-      { id: "Rv__7bzV_", itemName: "asia3", Price: "10", Count: "10", Tax: "10" },
-      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "20", Tax: "20" },
-      { id: "W6GNu09W5", itemName: "asia2", Price: "30", Count: "40", Tax: "20" },
+      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "1", Tax: "20" },
+      { id: "W6GNu09W5", itemName: "asia2", Price: "20", Count: "1", Tax: "20" },
     ]
   }
 ];
@@ -140,73 +122,43 @@ const jsPdfGenerator = (orderData, invoiceData) => {
   var i;
   for (i = 0; i < invoiceArray.length; i++) {
     console.log(i);
-    if (invoiceArray[i][1] != "") {
+    if (invoiceArray[i][1] !== "") {
       doc.text(col3Pos, currentRow, invoiceArray[i][0]);
       doc.text(col4Pos, currentRow, invoiceArray[i][1]);
       currentRow = currentRow + 10;
     }
   }
 
-
-
-
-  /*doc.text(col3Pos, 50, "Laskun numero");
-  doc.text(col3Pos, 60, "Viitenumero");
-  doc.text(col3Pos, 70, "Laskun pvm");
-  doc.text(col3Pos, 80, "Eräpäivä");
-  doc.text(col3Pos, 90, "Toimituspvm");
-  doc.text(col3Pos, 100, "Toimitustapa");
-  doc.text(col3Pos, 110, "Maksuehto");
-  doc.text(col3Pos, 120, "Viitteemme");
-  doc.text(col3Pos, 130, "Viitteenne");
-  doc.text(col3Pos, 140, "Ostajan tilausnumero");
-  doc.text(col3Pos, 150, "Viivästyskorko");
-  doc.text(col3Pos, 160, "Huomautusaika");
-
-  doc.text(col4Pos, 50, invoiceData.invoiceNumber);
-  doc.text(col4Pos, 60, invoiceData.referenceNumber);
-  doc.text(col4Pos, 70, invoiceData.invoiceDate);
-  doc.text(col4Pos, 80, invoiceData.dueDate);
-  doc.text(col4Pos, 90, invoiceData.shippingDate);
-  doc.text(col4Pos, 100, invoiceData.shippingMethod);
-  doc.text(col4Pos, 110, invoiceData.paymentCondition);
-  doc.text(col4Pos, 120, invoiceData.ourReference);
-  doc.text(col4Pos, 130, invoiceData.yourReference);
-  doc.text(col4Pos, 140, invoiceData.buyerOrderNumber);
-  doc.text(col4Pos, 150, invoiceData.interestOfLatePayment);
-  doc.text(col4Pos, 160, invoiceData.timeOfComplaint);*/
-
   //-----------------------------------------------------------------
   // create table invoiceData
   // calculate prices & taxes
 
-  var invoiceData = new Array();
+  var listData = new Array();
   var totalPriceNoTaxes = 0;
   var taxesTotal = 0;
 
-  var i;
   for (i = 0; i < orderData[0].billContent.length; i++) {
 
-    invoiceData[i] = [5];
+    listData[i] = [5];
     // item name
-    invoiceData[i][0] = orderData[0].billContent[i].itemName;
+    listData[i][0] = orderData[0].billContent[i].itemName;
 
     // item price
-    invoiceData[i][1] = parseFloat(orderData[0].billContent[i].Price).toFixed(2);
+    listData[i][1] = parseFloat(orderData[0].billContent[i].Price).toFixed(2);
 
     // amount
-    invoiceData[i][2] = orderData[0].billContent[i].Count;
+    listData[i][2] = orderData[0].billContent[i].Count;
 
     // tax %
-    invoiceData[i][3] = orderData[0].billContent[i].Tax + " %";
+    listData[i][3] = orderData[0].billContent[i].Tax + " %";
 
     // total price
-    invoiceData[i][4] = (orderData[0].billContent[i].Price * orderData[0].billContent[i].Count).toFixed(2);
+    listData[i][4] = (orderData[0].billContent[i].Price * orderData[0].billContent[i].Count).toFixed(2);
 
     //----------------------
-    totalPriceNoTaxes += parseFloat(invoiceData[i][4])
+    totalPriceNoTaxes += parseFloat(listData[i][4])
     // taxes = (item price * count) * (tax % / 100)
-    taxesTotal += (parseFloat(invoiceData[i][1]) * parseFloat(invoiceData[i][2])) * (parseFloat(invoiceData[i][3]) / 100)
+    taxesTotal += (parseFloat(listData[i][1]) * parseFloat(listData[i][2])) * (parseFloat(listData[i][3]) / 100)
 
   }
 
@@ -247,7 +199,7 @@ const jsPdfGenerator = (orderData, invoiceData) => {
       3: { cellWidth: 40, halign: 'center' },
       4: { cellWidth: 69, halign: 'right' },
     },
-    body: invoiceData
+    body: listData
   })
 
   // start new page if table does not fit on page
