@@ -40,6 +40,8 @@ const orderData = [
     id: "Vmw5Rh73q", billName: "lasku 1", billContent: [
       { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "1", Tax: "20" },
       { id: "W6GNu09W5", itemName: "asia2", Price: "20", Count: "1", Tax: "20" },
+      { id: "sUzcDSjZC", itemName: "asia1", Price: "10", Count: "1", Tax: "20" },
+      { id: "W6GNu09W5", itemName: "asia2", Price: "20", Count: "1", Tax: "20" },
     ]
   }
 ];
@@ -65,7 +67,6 @@ const invoiceData = [
     "buyerName": "",
     "streetAddress": "",
     "zipCodeTown": "",
-
   },
 ]
 
@@ -110,7 +111,6 @@ const jsPdfGenerator = (orderData, invoiceData) => {
   let currentRow = 50;
   var i;
   for (i = 0; i < invoiceArray.length; i++) {
-    console.log(i);
     if (invoiceArray[i][1] !== "") {
       doc.text(col3Pos, currentRow, invoiceArray[i][0]);
       doc.text(col4Pos, currentRow, invoiceArray[i][1]);
@@ -255,8 +255,6 @@ const jsPdfGenerator = (orderData, invoiceData) => {
 
 //---------------------------------------------------------------
 
-
-//-----------------------------------------------------
 const dateToString = (dt) => {
   var date = new Date(dt);
   let returnString = (date.getDate() + ". " + (+date.getMonth() + 1).toString() + ". " + date.getFullYear()).toString();
@@ -296,9 +294,6 @@ const saveInvoiceData = () => {
   invoiceArray[11][1] = document.getElementById('timeOfComplaint').value;
   console.log(invoiceData);
   console.log(invoiceArray);
-
-  // tallenna laskun tiedot tässä
-  console.log('tallennettu');
 
   return null;
 }
