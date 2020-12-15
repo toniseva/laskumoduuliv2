@@ -245,10 +245,8 @@ const jsPdfGenerator = (orderData, invoiceData) => {
     // page footer
     doc.text(leftMargin, footerStartY + 15, "Red Orchid Consulting Oy Ltd");
     doc.text(leftMargin, footerStartY + 25, "Viherkallionkuja 3 I 59");
-    doc.text(leftMargin, footerStartY + 35, "02710, Espoo9");
-    doc.text(leftMargin, footerStartY + 45, "Puh");
-    doc.text(col2Pos, footerStartY + 45, "040-0658026");
-    // doc.text(leftMargin, footerStartY + 55, "E-mail");
+    doc.text(leftMargin, footerStartY + 35, "02710, Espoo");
+    doc.text(leftMargin, footerStartY + 45, "Puh: 040 - 0658026");
 
     doc.text(col3Pos, footerStartY + 15, "Y-tunnus");
     doc.text(col4Pos, footerStartY + 15, "2782601-3");
